@@ -22,10 +22,9 @@ class HelloWorldTest < Minitest::Test
     MSG
   end
 
-  def test_no_strange_name
-    assert_equal 'Hello, !', hello_world(''), <<-MSG
-    When given an empty string it should have a space
-    and punctuation, though admittedly this is strange.
+  def test_empty_string_name
+    assert_equal 'Hello, World!', hello_world(''), <<-MSG
+    When given an empty string it should greet the world!
     MSG
   end
 end

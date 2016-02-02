@@ -41,4 +41,8 @@ class YearTest < Minitest::Test
     skip
     assert leap_year?(2000), 'Yes, 2000 is a leap year'
   end
+  def test_long_long_ago
+    skip
+    assert leap_year?(8), 'Yes, 8 is a leap year'
+  end
 end
