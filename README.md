@@ -13,15 +13,11 @@ run with `$ ruby hello_world_test.rb`.
 __Remember: the goal is to write code that is expressive and readable.__
 
 ## Running the Tests
-All the tests for these exercises are written using the [_Minitest_ gem](https://github.com/seattlerb/minitest). This gem is provided in by default in newer distributions of ruby, but you can install it manually using `$ gem install minitest` if it doesn't appear in the output of `$gem list`/ 
+All the tests for these exercises are written using the [_Minitest_ gem](https://github.com/seattlerb/minitest). This gem is provided in by default in newer distributions of ruby, but you can install it manually using `$ gem install minitest` if it doesn't appear in the output of `$ gem list`.
 
-If you would like color output, you can `require 'minitest/pride'` in
-the test file. I may have done this in the test file already. ^_^
-
-In order to run the test, you can run the test file from the exercise directory. For example, if the test suite is called `hello_world_test.rb`, run the tests with `$ ruby hello_world_test.rb`.
+If you would like color output, you can `require 'minitest/pride'` in the test file. I may have done this in some of the test files already. ^_^
 
 ## Understanding Test Failures
-
 Failing tests (errors) look something like:
 
     # Running:
