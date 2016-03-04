@@ -23,7 +23,7 @@ class TwelveDaysTest < Minitest::Test
   def test_day_five_yelling_gift
     skip
     yell = Xmas.gifts(4).first
-    assert_equal yell, "FIVE GOLDEN RINGS"
+    assert_equal "FIVE GOLDEN RINGS", yell
   end
 
   def test_first_verse
