@@ -37,9 +37,9 @@ class TwelveDaysTest < Minitest::Test
     skip
     v1, v2, v3 = Xmas.verse(1).split("\n")
 
-    assert_equal v1, "On the second day of Christmas my true love gave to me"
-    assert_equal v2, "two turtle doves"
-    assert_equal v3, "and a partridge in a pear tree"
+    assert_equal "On the second day of Christmas my true love gave to me", v1
+    assert_equal "two turtle doves", v2
+    assert_equal "and a partridge in a pear tree", v3
   end
 
   def test_last_verse
