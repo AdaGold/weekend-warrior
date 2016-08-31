@@ -3,7 +3,7 @@
 Write a program that prints out all of the lyrics to the traditional song [_The Twelve Days of Christmas_.](https://en.wikipedia.org/wiki/The_Twelve_Days_of_Christmas_(song))
 
 ## Specifications
-- You don't have to worry about capitalization; the entire text can be case insensitive.
+- You don't have to worry about capitalization; the entire text can be case insensitive (except for day five, as noted at the bottom of this Specifications list).
 - You can sensibly ignore any punctuation. Commas and periods can be ignored.
 - There should be a blank line between each verse.
 - You must ordinalize your numbers: "first day of Christmas", "Four calling birds", etc.
