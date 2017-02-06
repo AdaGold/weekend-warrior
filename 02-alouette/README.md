@@ -41,7 +41,9 @@ Alouette, je te plumerai.
 The complete lyrics can be found in [`alouette_lyrics.txt`](alouette_lyrics.txt).
 
 ## Program Structure
-You will write a class, `Alouette`, with three methods.
+You will write a class, `Alouette`, with three methods, `lines_for_verse`, `verse` and `sing`.
+
+Before you begin, spend some time thinking about the problem. How do these methods connect to each other? How will your program keep track of the various song components?
 
 ### `lines_for_verse`
 `Alouette#lines_for_verse` will do the work of generating all those `Et <part>!` lines for a given verse. It should return an array of strings, without repeats. For example, if you were to call `lines_for_verse(2)`, it would return
@@ -50,7 +52,7 @@ You will write a class, `Alouette`, with three methods.
 ["Et les yeux!", "Et le bec!", "Et la tête!"]
 ```
 
-Note that verses are 0-indexed. The components can be found in the constant array `ALOUETTE_PARTS` in the skeleton code.
+Note that verses are 0-indexed.
 
 ### `verse`
 `Alouette#verse` will build the requested verse. It should return a string. For example, if you were to call `verse(2)`, it would return
