@@ -7,14 +7,12 @@ Minitest::Reporters.use!
 
 class AlouetteTest < Minitest::Test
   # Load the canonical lyrics from disk
-  let(:expected_lyrics) do
-    File.read(File.dirname(__FILE__) + '/alouette_lyrics.txt').strip
-  end
+  @@canonical_lyrics = File.read(File.dirname(__FILE__) + '/alouette_lyrics.txt').strip
 
   #
   # lines_for_verse
   #
-  def returns_an_array_of_strings
+  def test_lines_for_verse_returns_an_array_of_strings
     lines = Alouette.lines_for_verse(3)
 
     assert_kind_of Array, lines
@@ -24,12 +22,12 @@ class AlouetteTest < Minitest::Test
     end
   end
 
-  def generates_the_correct_line_for_the_first_verse
+  def test_lines_for_verse_generates_the_correct_line_for_the_first_verse
     skip
     assert_equal ['Et la tête!'], Alouette.lines_for_verse(0)
   end
 
-  def generates_the_correct_lines_for_the_third_verse
+  def test_lines_for_verse_generates_the_correct_lines_for_the_third_verse
     skip
     expected_lines = [
       "Et les yeux!",
@@ -42,12 +40,12 @@ class AlouetteTest < Minitest::Test
   #
   # verse
   #
-  def returns_a_string
+  def test_verse_returns_a_string
     skip
     assert_kind_of String, Alouette.verse(3)
   end
 
-  def first_two_lines_begin_with_Je_te_plumerai
+  def test_first_two_lines_of_verse_begin_with_Je_te_plumerai
     skip
     lines = Alouette.verse(3).split("\n")
 
@@ -59,7 +57,7 @@ class AlouetteTest < Minitest::Test
     end
   end
 
-  def last_three_lines
+  def test_last_three_lines_of_verse_are_as_expected
     skip
     lines = Alouette.verse(3).split("\n")
 
@@ -71,7 +69,7 @@ class AlouetteTest < Minitest::Test
     assert_equal "A-a-a-ah", lines[-1]
   end
 
-  def middle_lines_begin_with_Et_and_end_with_bang
+  def test_verse_middle_lines_begin_with_Et_and_end_with_bang
     skip
     lines = Alouette.verse(3).split("\n")
 
@@ -87,7 +85,7 @@ class AlouetteTest < Minitest::Test
     end
   end
 
-  def generates_the_third_verse
+  def test_generates_the_third_verse
     skip
     expected_verse = <<-__END_VERSE__
 Je te plumerai les yeux.
@@ -109,12 +107,12 @@ __END_VERSE__
   #
   # sing
   #
-  def returns_a_string
+  def test_sing_returns_a_string
     skip
     assert_kind_of String, Alouette.sing
   end
 
-  def begins_and_ends_with_the_refrain
+  def test_sing_begins_and_ends_with_the_refrain
     skip
     song = Alouette.sing
     refrain = "Alouette, gentille alouette,\nAlouette, je te plumerai."
@@ -122,8 +120,8 @@ __END_VERSE__
     assert song.end_with?("\n\n" + refrain), "Song didn't end with the refrain"
   end
 
-  def generates_the_full_lyrics
+  def test_sing_generates_the_full_lyrics
     skip
-    assert_equal expected_lyrics, Alouette.sing
+    assert_equal @@canonical_lyrics, Alouette.sing
   end
 end
