@@ -1,5 +1,4 @@
 gem 'minitest', '>= 5.0.0'
-require 'minitest/spec'
 require 'minitest/reporters'
 require 'minitest/autorun'
 require_relative 'alouette'
@@ -7,82 +6,90 @@ require_relative 'alouette'
 Minitest::Reporters.use!
 
 class AlouetteTest < Minitest::Test
-  describe "lines_for_verse" do
-    it "returns an array of strings" do
-      lines = Alouette.lines_for_verse(3)
+  # Load the canonical lyrics from disk
+  let(:expected_lyrics) do
+    File.read(File.dirname(__FILE__) + '/alouette_lyrics.txt').strip
+  end
 
-      lines.must_be_kind_of Array
+  #
+  # lines_for_verse
+  #
+  def returns_an_array_of_strings
+    lines = Alouette.lines_for_verse(3)
 
-      lines.each do |line|
-        line.must_be_kind_of String
-      end
-    end
+    assert_kind_of Array, lines
 
-    it "generates the correct line for the first verse" do
-      skip
-      Alouette.lines_for_verse(0).must_equal ['Et la tête!']
-    end
-
-    it "generates the correct lines for the third verse" do
-      skip
-      expected_lines = [
-        "Et les yeux!",
-        "Et le bec!",
-        "Et la tête!"
-      ]
-      Alouette.lines_for_verse(2).must_equal expected_lines
+    lines.each do |line|
+      assert_kind_of String, line
     end
   end
 
-  describe "verse" do
-    it "returns a string" do
-      skip
-      Alouette.verse(3).must_be_kind_of String
+  def generates_the_correct_line_for_the_first_verse
+    skip
+    assert_equal ['Et la tête!'], Alouette.lines_for_verse(0)
+  end
+
+  def generates_the_correct_lines_for_the_third_verse
+    skip
+    expected_lines = [
+      "Et les yeux!",
+      "Et le bec!",
+      "Et la tête!"
+    ]
+    assert_equal expected_lines, Alouette.lines_for_verse(2)
+  end
+
+  #
+  # verse
+  #
+  def returns_a_string
+    skip
+    assert_kind_of String, Alouette.verse(3)
+  end
+
+  def first_two_lines_begin_with_Je_te_plumerai
+    skip
+    lines = Alouette.verse(3).split("\n")
+
+    # If there aren't at least 2 lines, don't continue
+    assert_operator lines.length, :>, 1, "Not enough lines for this test"
+
+    2.times do |i|
+      assert lines[i].start_with?('Je te plumerai'), "Line #{i} didn't start with 'Je te plumerai'"
     end
+  end
 
-    it "first two lines begin with 'Je te plumerai'" do
-      skip
-      lines = Alouette.verse(3).split("\n")
+  def last_three_lines
+    skip
+    lines = Alouette.verse(3).split("\n")
 
-      # If there aren't at least 2 lines, don't continue
-      lines.length.must_be :>, 1, "Not enough lines for this test"
+    # If there aren't at least 3 lines, don't continue
+    assert_operator lines.length, :>, 2, "Not enough lines for this test"
 
-      2.times do |i|
-        lines[i].start_with?('Je te plumerai').must_equal true, "Line #{i} didn't start with 'Je te plumerai'"
-      end
+    assert_equal "Alouette!", lines[-3]
+    assert_equal "Alouette!", lines[-2]
+    assert_equal "A-a-a-ah", lines[-1]
+  end
+
+  def middle_lines_begin_with_Et_and_end_with_bang
+    skip
+    lines = Alouette.verse(3).split("\n")
+
+    # If there aren't at least 6 lines, don't continue
+    assert_operator lines.length, :>, 5, "Not enough lines for this test"
+
+    # Slice off the first 2 and last 3 lines
+    lines = lines[2, lines.length-5]
+
+    lines.each do |line|
+      assert line.start_with?("Et "), "Inner line didn't start with 'Et '"
+      assert line.end_with?("!"), "Inner line didn't end with '!'"
     end
+  end
 
-    it "last three lines are 'Alouette! Alouette! A-a-a-ah'" do
-      skip
-      lines = Alouette.verse(3).split("\n")
-
-      # If there aren't at least 3 lines, don't continue
-      lines.length.must_be :>, 2, "Not enough lines for this test"
-
-      lines[-3].must_equal "Alouette!"
-      lines[-2].must_equal "Alouette!"
-      lines[-1].must_equal "A-a-a-ah"
-    end
-
-    it "middle lines begin with 'Et ' and end with '!'" do
-      skip
-      lines = Alouette.verse(3).split("\n")
-
-      # If there aren't at least 6 lines, don't continue
-      lines.length.must_be :>, 5, "Not enough lines for this test"
-
-      # Slice off the first 2 and last 3 lines
-      lines = lines[2, lines.length-5]
-
-      lines.each do |line|
-        line.start_with?("Et ").must_equal true, "Inner line didn't start with 'Et '"
-        line.end_with?("!").must_equal true, "Inner line didn't end with '!'"
-      end
-    end
-
-    it "generates the third verse" do
-      skip
-      expected_verse = <<-__END_VERSE__
+  def generates_the_third_verse
+    skip
+    expected_verse = <<-__END_VERSE__
 Je te plumerai les yeux.
 Je te plumerai les yeux.
 Et les yeux!
@@ -95,34 +102,28 @@ Alouette!
 Alouette!
 A-a-a-ah
 __END_VERSE__
-      expected_verse.strip!
-      Alouette.verse(2).must_equal expected_verse
-    end
+    expected_verse.strip!
+    assert_equal expected_verse, Alouette.verse(2)
   end
 
-  describe "sing" do
-    # Load the canonical lyrics from disk
-    let(:expected_lyrics) do
-      skip
-      File.read(File.dirname(__FILE__) + '/alouette_lyrics.txt').strip
-    end
+  #
+  # sing
+  #
+  def returns_a_string
+    skip
+    assert_kind_of String, Alouette.sing
+  end
 
-    it "returns a string" do
-      skip
-      Alouette.sing.must_be_kind_of String
-    end
+  def begins_and_ends_with_the_refrain
+    skip
+    song = Alouette.sing
+    refrain = "Alouette, gentille alouette,\nAlouette, je te plumerai."
+    assert song.start_with?(refrain + "\n\n"), "Song didn't begin with the refrain"
+    assert song.end_with?("\n\n" + refrain), "Song didn't end with the refrain"
+  end
 
-    it "begins and ends with the refrain" do
-      skip
-      song = Alouette.sing
-      refrain = "Alouette, gentille alouette,\nAlouette, je te plumerai."
-      song.start_with?(refrain + "\n\n").must_equal true, "Song didn't begin with the refrain"
-      song.end_with?("\n\n" + refrain).must_equal true, "Song didn't end with the refrain"
-    end
-
-    it "generates the full lyrics" do
-      skip
-      Alouette.sing.must_equal expected_lyrics
-    end
+  def generates_the_full_lyrics
+    skip
+    assert_equal expected_lyrics, Alouette.sing
   end
 end
