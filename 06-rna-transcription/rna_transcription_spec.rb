@@ -3,83 +3,68 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require_relative 'rna_transcription'
 
-class ComplementTest < Minitest::Test
-  def test_rna_complement_of_cytosine_is_guanine
-    assert_equal 'G', Complement.of_dna('C')
+describe "RNA Complement Test" do
+  it "Check Rna complement of cytosine is guanine" do
+    expect('G').must_equal Complement.of_dna('C')
+  end
+  it "Check rna complement of guanine is cytosine" do
+    expect('C').must_equal Complement.of_dna('G')
   end
 
-  def test_rna_complement_of_guanine_is_cytosine
-    skip
-    assert_equal 'C', Complement.of_dna('G')
+  it "Check rna complement of thymine is adenine" do
+    expect('A').must_equal Complement.of_dna('T')
   end
 
-  def test_rna_complement_of_thymine_is_adenine
-    skip
-    assert_equal 'A', Complement.of_dna('T')
+  it "Check rna complement of adenine is uracil" do
+    expect('U').must_equal Complement.of_dna('A')
   end
 
-  def test_rna_complement_of_adenine_is_uracil
-    skip
-    assert_equal 'U', Complement.of_dna('A')
+  it "Check rna complement" do
+    expect('UGCACCAGAAUU').must_equal Complement.of_dna('ACGTGGTCTTAA')
   end
 
-  def test_rna_complement
-    skip
-    assert_equal 'UGCACCAGAAUU', Complement.of_dna('ACGTGGTCTTAA')
+  it "Check dna complement of cytosine is guanine" do
+    expect('G').must_equal Complement.of_rna('C')
   end
 
-  def test_dna_complement_of_cytosine_is_guanine
-    skip
-    assert_equal 'G', Complement.of_rna('C')
+  it "Check dna complement of guanine is cytosine" do
+    expect('C').must_equal Complement.of_rna('G')
   end
 
-  def test_dna_complement_of_guanine_is_cytosine
-    skip
-    assert_equal 'C', Complement.of_rna('G')
+  it "Check dna complement of uracil is adenine" do
+    expect('A').must_equal Complement.of_rna('U')
   end
 
-  def test_dna_complement_of_uracil_is_adenine
-    skip
-    assert_equal 'A', Complement.of_rna('U')
+  it "Check dna complement of adenine is thymine" do
+    expect('T').must_equal Complement.of_rna('A')
   end
 
-  def test_dna_complement_of_adenine_is_thymine
-    skip
-    assert_equal 'T', Complement.of_rna('A')
+  it "Check dna complement" do
+    expect('ACTTGGGCTGTAC').must_equal Complement.of_rna('UGAACCCGACAUG')
   end
 
-  def test_dna_complement
-    skip
-    assert_equal 'ACTTGGGCTGTAC', Complement.of_rna('UGAACCCGACAUG')
+  it "Check dna raises argument error" do
+    expect(proc { Complement.of_dna('U') }).must_raise ArgumentError
   end
 
-  def test_dna_raises_argument_error
-    skip
-    assert_raises(ArgumentError) { Complement.of_dna('U') }
+  it "Check rna raises argument error" do
+    expect( proc { Complement.of_rna('T') } ).must_raise ArgumentError
   end
 
-  def test_rna_raises_argument_error
-    skip
-    assert_raises(ArgumentError) { Complement.of_rna('T') }
+  it "Check rna raises argument error on completely invalid input" do
+    expect(proc { Complement.of_rna('XXX') }).must_raise ArgumentError
   end
 
-  def test_rna_raises_argument_error_on_completely_invalid_input
-    skip
-    assert_raises(ArgumentError) { Complement.of_rna('XXX') }
+  it "Check dna raises argument error on completely invalid input" do
+    expect( proc { Complement.of_dna('XXX') }).must_raise ArgumentError
   end
 
-  def test_dna_raises_argument_error_on_completely_invalid_input
-    skip
-    assert_raises(ArgumentError) { Complement.of_dna('XXX') }
+  it "Check dna raises argument error on partially invalid input" do
+    expect(proc { Complement.of_dna('ACGTXXXCTTAA') }).must_raise ArgumentError
   end
 
-  def test_dna_raises_argument_error_on_partially_invalid_input
-    skip
-    assert_raises(ArgumentError) { Complement.of_dna('ACGTXXXCTTAA') }
-  end
-
-  def test_rna_raises_argument_error_on_partially_invalid_input
-    skip
-    assert_raises(ArgumentError) { Complement.of_rna('UGAAXXXGACAUG') }
+  it "Check rna raises argument error on partially invalid input" do
+    expect(proc { Complement.of_rna('UGAAXXXGACAUG') }).must_raise ArgumentError
+#    assert_raises(ArgumentError) { Complement.of_rna('UGAAXXXGACAUG') }
   end
 end
