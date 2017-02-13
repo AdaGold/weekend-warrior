@@ -70,7 +70,7 @@ class RomanReverterTest < Minitest::Test
 
   def test_nineteen
     skip
-    assert_equal 19, Roman.reverter("IXX")
+    assert_equal 19, Roman.reverter("XIX")
   end
 
   def test_forty
