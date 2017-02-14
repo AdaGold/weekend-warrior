@@ -79,6 +79,5 @@ describe "RNA Complement Test" do
   it "Check rna raises argument error on partially invalid input" do
     skip
     expect(proc { Complement.of_rna('UGAAXXXGACAUG') }).must_raise ArgumentError
-#    assert_raises(ArgumentError) { Complement.of_rna('UGAAXXXGACAUG') }
   end
 end

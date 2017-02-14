@@ -12,10 +12,9 @@ describe "Robot Name" do
   NAME_REGEXP = /^[A-Z]{2}\d{3}$/
 
   it "Must have a name" do
-    # `assert_match` is looking to verify the format of the name
+    # `must_match` is looking to verify the format of the name
     # see the README for specs regarding name format
     expect(Robot.new.name).must_match NAME_REGEXP
-    #assert_match NAME_REGEXP, Robot.new.name
   end
 
   it "Check that the name sticks" do

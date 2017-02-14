@@ -56,9 +56,9 @@ describe Hamming do
     expect(Hamming.compute('GGACGGATTCTG', 'AGGACGGATTCT')).must_equal 9
   end
 
-  def test_empty_strands
+  it "Check Empty Strands" do
     skip
-    assert_equal 0, Hamming.compute('', '')
+    expect(Hamming.compute('', '')).must_equal 0
   end
 
   it "Check disallow first strand longer" do
@@ -69,6 +69,5 @@ describe Hamming do
   it "Check disallow second strand longer" do
     skip
     expect( proc { Hamming.compute('ATA', 'AGTG') }).must_raise ArgumentError
-    #assert_raises(ArgumentError) { Hamming.compute('ATA', 'AGTG') }
   end
 end
