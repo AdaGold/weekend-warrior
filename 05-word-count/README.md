@@ -1,5 +1,5 @@
 # Word Count
-Write a program that given a phrase can count the occurrences of each word in that phrase. The program has special handling rules for whitespace characters like new lines and tabs, as well as handling punctuation. Read the test assertions carefully to uncover the rules.
+Write a program that given a phrase can count the occurrences of each word in that phrase. The program has special handling rules for whitespace characters like new lines and tabs, as well as handling punctuation. Read the test matchers carefully to uncover the rules.
 
 For example, calling `word_count("everybody loves tacos right?")` should return a _hash_ that looks like this:
 
