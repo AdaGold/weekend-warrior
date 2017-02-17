@@ -3,6 +3,8 @@ require 'minitest/pride'
 require 'minitest/autorun'
 require_relative 'leap'
 
+# This Date class can be safely ignored.
+# It prevents using the Date class' leap? method.
 class Date
   def leap?
     throw "Implement this yourself instead of using Ruby's implementation."
