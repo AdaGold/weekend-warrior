@@ -15,7 +15,7 @@ respond with a new name.
 
 So how does the test spec guarantee that all robot names match the given patter?  The answer is **Regular Expressions**.  
 
-Looking at the `robot_name_spec.rb` file you will notice lines like:
+Looking at the `robot_name_spec.rb` file you will notice this line:
 
 ```ruby
 NAME_REGEXP = /^[A-Z]{2}\d{3}$/
