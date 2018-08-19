@@ -16,7 +16,10 @@ def leap_year?(year)
     is_leap_year = true
     if year % 100 == 0
       is_leap_year = false
-    end 
+      if year % 400 == 0
+        is_leap_year = true
+      end
+    end
   end
 
   return is_leap_year
