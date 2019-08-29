@@ -13,9 +13,9 @@ respond with a new name.
 
 ## Regular Expressions
 
-So how does the test spec guarantee that all robot names match the given pattern?  The answer is **Regular Expressions**.  
+So how does the test guarantee that all robot names match the given pattern?  The answer is **Regular Expressions**.  
 
-Looking at the `robot_name_spec.rb` file you will notice this line:
+Looking at the `robot_name_test.rb` file you will notice this line:
 
 ```ruby
 NAME_REGEXP = /^[A-Z]{2}\d{3}$/
@@ -34,7 +34,7 @@ Lastly the dollar sign ($) indicates the end of the line.
 
 Putting it all together `/^[A-Z]{2}\d{3}$/` matches a line which starts with two capitalized letters followed by 3 digits and then ends the line.
 
-In the spec file, the tests verify that any Robot name must match the regular expression.  
+In the test file, the tests verify that any Robot name must match the regular expression.  
 
 [REGEXPER](https://regexper.com/) is a very handy tool which takes a regular expression and converts it to a graphical drawing.  
 

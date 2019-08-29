@@ -13,7 +13,7 @@ describe "Robot Name" do
 
   it "Must have a name" do
     # `must_match` is looking to verify the format of the name
-    # see the README for specs regarding name format
+    # see the README regarding name format
     expect(Robot.new.name).must_match NAME_REGEXP
   end
 
